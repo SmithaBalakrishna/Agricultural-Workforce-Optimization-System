@@ -1,0 +1,30 @@
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path('customerloginpage',customerloginpage, name='customerloginpage'),
+    path('customerregistrationaction', customerregistrationaction, name='customerregistrationaction'),
+    path('customerloginaction', customerloginaction, name='customerloginaction'),
+    path('customerlogout', customerlogout, name='customerlogout'),
+    path('update_customer_profile', update_customer_profile, name='update_customer_profile'),
+    path('customerprofile', customerprofile, name='customerprofile'),
+    path('update_customer_profile_password', update_customer_profile_password, name='update_customer_profile_password'),
+    path('createservicerequest', createservicerequest, name='createservicerequest'),
+    path('trackservicerequest', trackservicerequest, name='trackservicerequest'),
+    path('assignedworkers', assignedworkers, name='assignedworkers'),
+    path('rate_review_workers', rate_review_workers, name='rate_review_workers'),
+    path('userpayment', userpayment, name='userpayment'),
+    path('userservicehistory', userservicehistory, name='userservicehistory'),
+    path('userfeedback', userfeedback, name='userfeedback'),
+    path('customersupport', customersupport, name='customersupport'),
+    path('customercancledservicerequest', customercancledservicerequest, name='customercancledservicerequest'),
+    path('createservicerequest_action', createservicerequest_action, name='createservicerequest_action'),
+    path('delete_service_request', delete_service_request, name='delete_service_request'),
+    path('chat_interface', chat_interface, name='chat_interface'),
+    path('send_message', send_message, name='send_message'),
+    path('customer_support_action', customer_support_action, name='customer_support_action'),
+    path('user-feedback', userfeedback, name='user_feedback'),
+    path('submit-rating-review/', submit_rating_review, name='submit_rating_review'),
+    path('set_priority', set_priority, name='set_priority'),
+    path('payment_gateway', payment_gateway, name='payment_gateway'),
+]

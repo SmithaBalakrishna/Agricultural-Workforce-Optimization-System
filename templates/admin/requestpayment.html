@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Payment</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for agricultural theme */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #388e3c; /* Deep green for navbar */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+      background-color: #ffffff;
+      border: none;
+    }
+
+    .table th {
+      background-color: #81c784; /* Light green for headers */
+      color: #ffffff;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .table td {
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .form-control {
+      border: 1px solid #c8e6c9; /* Light green border */
+      border-radius: 5px;
+    }
+
+    .form-control:focus {
+      border-color: #388e3c; /* Green focus */
+      box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+    }
+
+    .btn-primary {
+      background-color: #388e3c; /* Deep green for action button */
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2e7d32;
+    }
+
+    h2 {
+      color: #388e3c;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'admin/adminnavbar.html' %}
+
+  <div class="container mt-5">
+    <div class="form-container">
+      <h2>Request Payment</h2>
+      <table class="table table-bordered">
+        <tr>
+          <th>Worker</th>
+          <td>{{ assignment.worker.username }}</td>
+        </tr>
+        <tr>
+          <th>Customer</th>
+          <td>{{ assignment.customer.username }}</td>
+        </tr>
+        <tr>
+          <th>Request</th>
+          <td>{{ assignment.request.service }}</td>
+        </tr>
+        <tr>
+          <th>Title</th>
+          <td>{{ assignment.title }}</td>
+        </tr>
+        <tr>
+          <th>Start</th>
+          <td>{{ assignment.start }}</td>
+        </tr>
+        <tr>
+          <th>End</th>
+          <td>{{ assignment.end }}</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td>{{ assignment.status }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="form-container">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="service_charge">Service Charge</label>
+          <input type="number" step="0.01" class="form-control" id="service_charge" name="service_charge" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="cgst">CGST</label>
+            <input type="number" step="0.01" class="form-control" id="cgst" name="cgst" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="sgst">SGST</label>
+            <input type="number" step="0.01" class="form-control" id="sgst" name="sgst" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="total_amount">Total Amount</label>
+          <input type="number" step="0.01" class="form-control" id="total_amount" name="total_amount" readonly>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('input', function () {
+      const serviceCharge = parseFloat(document.getElementById('service_charge').value) || 0;
+      const cgst = parseFloat(document.getElementById('cgst').value) || 0;
+      const sgst = parseFloat(document.getElementById('sgst').value) || 0;
+
+      const totalAmount = serviceCharge + cgst + sgst;
+      document.getElementById('total_amount').value = totalAmount.toFixed(2);
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

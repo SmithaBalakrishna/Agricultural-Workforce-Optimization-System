@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Profile</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for agricultural theme */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #388e3c; /* Deep green for navbar */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .profile-background {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .profile-container h1 {
+      color: #388e3c;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      border: 1px solid #c8e6c9; /* Light green border */
+      border-radius: 5px;
+      background-color: #f8fdf6; /* Subtle green background */
+      color: #2e7d32;
+    }
+
+    .form-control:focus {
+      border-color: #388e3c; /* Green focus */
+      box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+    }
+
+    .btn-secondary {
+      background-color: #388e3c; /* Deep green for buttons */
+      border: none;
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background-color: #2e7d32;
+    }
+
+    .messages {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .messages li {
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .messages .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .messages .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'customer/customernavbar.html' %}
+
+  <div class="container">
+    <!-- Profile Update Section -->
+    <div class="profile-background">
+      <div class="profile-container">
+        <h1>Profile Details</h1>
+        <form method="POST" action="{% url 'update_customer_profile' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 profile-detail">
+              <label for="firstname"><strong>First Name:</strong></label>
+              <input type="text" id="firstname" name="firstname" class="form-control" value="{{ customer.firstname }}">
+            </div>
+            <div class="col-md-6 profile-detail">
+              <label for="lastname"><strong>Last Name:</strong></label>
+              <input type="text" id="lastname" name="lastname" class="form-control" value="{{ customer.lastname }}">
+            </div>
+            <div class="col-md-12 profile-detail">
+              <label for="address"><strong>Address:</strong></label>
+              <input type="text" id="address" name="address" class="form-control" value="{{ customer.address }}">
+            </div>
+            <div class="col-md-4 profile-detail">
+              <label for="city"><strong>City:</strong></label>
+              <input type="text" id="city" name="city" class="form-control" value="{{ customer.city }}">
+            </div>
+            <div class="col-md-4 profile-detail">
+              <label for="state"><strong>State:</strong></label>
+              <input type="text" id="state" name="state" class="form-control" value="{{ customer.state }}">
+            </div>
+            <div class="col-md-4 profile-detail">
+              <label for="country"><strong>Country:</strong></label>
+              <input type="text" id="country" name="country" class="form-control" value="{{ customer.country }}">
+            </div>
+            <div class="col-md-6 profile-detail">
+              <label for="username"><strong>Username:</strong></label>
+              <input type="text" id="username" name="username" class="form-control" value="{{ customer.username }}">
+            </div>
+            <div class="col-md-6 profile-detail">
+              <label for="email"><strong>Email:</strong></label>
+              <input type="email" id="email" name="email" class="form-control" value="{{ customer.email }}">
+            </div>
+            <div class="col-md-6 profile-detail">
+              <label for="number"><strong>Contact:</strong></label>
+              <input type="text" id="number" name="number" class="form-control" value="{{ customer.number }}">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-secondary btn-block">Update Profile</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Password Update Section -->
+    <div class="profile-background">
+      <div class="profile-container">
+        <h1>Update Password</h1>
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <form method="POST" action="{% url 'update_customer_profile_password' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-4 profile-detail">
+              <label for="old-password"><strong>Old Password:</strong></label>
+              <input type="password" id="old-password" name="oldpassword" class="form-control" placeholder="Enter old password">
+            </div>
+            <div class="col-md-4 profile-detail">
+              <label for="new-password"><strong>New Password:</strong></label>
+              <input type="password" id="new-password" name="newpassword" class="form-control" placeholder="Enter new password">
+            </div>
+            <div class="col-md-4 profile-detail">
+              <label for="cfr-password"><strong>Confirm Password:</strong></label>
+              <input type="password" id="cfr-password" name="confirm_password" class="form-control" placeholder="Confirm new password">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-secondary btn-block">Update Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

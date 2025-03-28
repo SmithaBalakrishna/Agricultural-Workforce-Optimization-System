@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Home</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #e8f5e9; /* Light green for agricultural theme */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: #388e3c; /* Deep green */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: #c8e6c9 !important; /* Light green hover */
+    }
+
+    /* Card Styles */
+    .card {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      font-weight: bold;
+      font-size: 1.25rem;
+      background-color: #81c784; /* Light green header */
+      color: #ffffff;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .card-body {
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'admin/adminnavbar.html' %}
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Registered Workers</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ worker_count }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Registered Customers</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ customer_count }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Active Workers</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ active_worker_count }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Inactive Workers</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ inactive_worker_count }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Active Customers</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ active_customer_count }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Inactive Customers</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ inactive_customer_count }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Workers Available</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ available_workers_count }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Total Workers Unavailable</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ unavailable_workers_count }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

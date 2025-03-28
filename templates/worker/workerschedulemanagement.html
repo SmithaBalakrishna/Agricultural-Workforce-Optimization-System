@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worker Home - Agricultural Workforce Optimization System</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f7fc; /* Light, clean background */
+      color: #333; /* Dark text for readability */
+    }
+    .navbar {
+      background-color: #4CAF50; /* Fresh green for navbar */
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #f9f9f9 !important;
+    }
+    .nav-link:hover {
+      color: #c7e6d4 !important;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .form-container {
+      background-color: #fff; /* Clean white for contrast */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-control {
+      background-color: #f9f9f9; /* Subtle input background */
+      border: 1px solid #ddd;
+      color: #333;
+    }
+    .form-control:focus {
+      border-color: #4CAF50; /* Highlight green on focus */
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+    .btn-primary {
+      background-color: #4CAF50; /* Green for buttons */
+      border: none;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background-color: #45a049;
+    }
+    .btn-warning {
+      background-color: #FFC107; /* Yellow for warning buttons */
+      border: none;
+      color: #fff;
+    }
+    .btn-warning:hover {
+      background-color: #FFB300;
+    }
+    .table thead {
+      background-color: #4CAF50; /* Fresh green for table header */
+      color: #fff;
+    }
+    .table tbody tr:nth-child(even) {
+      background-color: #f9f9f9; /* Subtle light background */
+    }
+    .table tbody tr:hover {
+      background-color: #E8F5E9; /* Light green for hover */
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'worker/workernavbar.html' %}
+
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+      <div class="form-container">
+        <div class="section-title">
+            <h2>Assigned Task's</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Customer Username</th>
+                            <th>Full Address</th>
+                            <th>Requested Service</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Route</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for req in customer_request %}
+                        <tr>
+                            <form method="post" action="{% url 'update_assignment' %}">
+                                {% csrf_token %}
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ req.customer.username }}</td>
+                                <td>{{ req.request.fulladdress }}</td>
+                                <td>{{ req.title }}</td>
+                                <td>
+                                    <input type="datetime-local" class="form-control" name="start" value="{{ req.start|date:'Y-m-d\\TH:i' }}">
+                                </td>
+                                <td>
+                                    <input type="datetime-local" class="form-control" name="end" value="{{ req.end|date:'Y-m-d\\TH:i' }}">
+                                </td>
+                                <td>
+                                    <a href="{{ req.request.location }}" target="_blank">
+                                        <button type="button" class="btn btn-primary">Directions</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="hidden" name="assignment_id" value="{{ req.id }}">
+                                    <button type="submit" class="btn btn-warning">Save</button>
+                                </td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

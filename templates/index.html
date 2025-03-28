@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agricultural Workforce Optimization System</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f7fc; /* Light, clean background */
+      color: #333; /* Dark text for readability */
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* Full viewport height */
+    }
+    .navbar {
+      background-color: #4CAF50; /* Green for navigation bar */
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #f9f9f9 !important;
+    }
+    .nav-link:hover {
+      color: #c7e6d4 !important;
+    }
+    .content-container {
+      flex: 1; /* Expand to fill space between navbar and footer */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      overflow: hidden; /* Prevent scrolling */
+    }
+    .content-container img {
+      max-width: 100%;
+      max-height: calc(100% - 100px); /* Adjust for navbar and footer height */
+      object-fit: contain; /* Scale image proportionally */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    footer {
+      background-color: #4CAF50;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">Agricultural Workforce Optimization System</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'customerloginpage' %}">Customer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'workerloginpage' %}">Worker</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'adminloginpage' %}">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="content-container">
+    <img src="{% static 'img.webp' %}" alt="Agriculture Background Image" class="img-fluid">
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Agricultural Workforce Optimization System. All Rights Reserved.</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

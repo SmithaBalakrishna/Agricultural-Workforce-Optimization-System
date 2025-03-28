@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agricultural Workforce Optimization System</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f7fc; /* Light, clean background */
+      color: #333; /* Dark text for readability */
+    }
+    .navbar {
+      background-color: #4CAF50; /* Fresh green for navbar */
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #f9f9f9 !important;
+    }
+    .nav-link:hover {
+      color: #c7e6d4 !important;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .form-container {
+      background-color: #fff; /* Clean white for contrast */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+      background-color: #4CAF50; /* Green for buttons */
+      border: none;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background-color: #45a049;
+    }
+    .btn-secondary {
+      background-color: #81C784; /* Lighter green for secondary buttons */
+      border: none;
+      color: #fff;
+    }
+    .btn-secondary:hover {
+      background-color: #66BB6A;
+    }
+    .form-select {
+      border: 1px solid #AED581; /* Light green border */
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 1rem;
+    }
+    .form-select:focus {
+      border-color: #81C784;
+      box-shadow: 0 0 5px rgba(81, 199, 132, 0.5);
+    }
+    .table thead {
+      background-color: #4CAF50; /* Fresh green for table header */
+      color: #fff;
+    }
+    .table tbody tr:nth-child(even) {
+      background-color: #f9f9f9; /* Subtle light background */
+    }
+    .table tbody tr:hover {
+      background-color: #E8F5E9; /* Light green for hover */
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'worker/workernavbar.html' %}
+
+  <section id="contact" class="contact mt-5">
+    <div class="container" data-aos="fade-up">
+      <div class="form-container">
+        <div class="section-title">
+            <h2 class="form-header">Assigned Tasks</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Customer Username</th>
+                            <th>Full Address</th>
+                            <th>Requested Service</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Route</th>
+                            <th>Status</th>
+                            <th>Time Off Request</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for req in customer_request %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ req.customer.username }}</td>
+                            <td>{{ req.request.fulladdress }}</td>
+                            <td>{{ req.title }}</td>
+                            <td>{{ req.start }}</td>
+                            <td>{{ req.end }}</td>
+                            <td>
+                                <a href="{{ req.request.location }}" target="_blank">
+                                    <button type="button" class="btn btn-primary">Directions</button>
+                                </a>
+                            </td>
+                            <td>
+                                {% if req.status == 'complete' or req.status == 'incomplete' %}
+                                    {{ req.status }}
+                                {% else %}
+                                    <form method="post" action="{% url 'update_assignment_status' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="req_id" value="{{ req.id }}">
+                                        <select name="status" class="form-select">
+                                            <option value="complete" {% if req.status == 'complete' %}selected{% endif %}>Complete</option>
+                                            <option value="incomplete" {% if req.status == 'incomplete' %}selected{% endif %}>Incomplete</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-secondary mt-2">Update</button>
+                                    </form>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if req.status != 'complete' and req.status != 'incomplete' %}
+                                    {% if req.workertimeoffrequest_set.exists %}
+                                        {% for time_off_request in req.workertimeoffrequest_set.all %}
+                                            <p>Time-off Requested ({{ time_off_request.time_off_duration }}) - Status: {{ time_off_request.status }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        <form method="post" action="{% url 'worker_request_time_off' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="req_id" value="{{ req.id }}">
+                                            <select name="time_off_duration" class="form-select">
+                                                <option value="5min">5 minutes</option>
+                                                <option value="10min">10 minutes</option>
+                                                <option value="15min">15 minutes</option>
+                                                <option value="20min">20 minutes</option>
+                                                <option value="30min">30 minutes</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-secondary mt-2">Request Time Off</button>
+                                        </form>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if req.status == 'none' or req.status == 'incomplete' %}
+                                    <a href="{% url 'worker_chat_interface' %}?request_id={{ req.id }}" class="btn btn-primary">Get in Touch</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

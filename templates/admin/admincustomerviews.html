@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Home</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green background */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #388e3c; /* Deep green for navbar */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #388e3c;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .table {
+      background-color: #ffffff;
+      border: none;
+    }
+
+    .table th {
+      background-color: #81c784; /* Light green for headers */
+      color: #ffffff;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .table td {
+      text-align: center;
+    }
+
+    .btn-link {
+      color: #2e7d32; /* Dark green for links */
+      font-weight: bold;
+    }
+
+    .btn-link:hover {
+      color: #388e3c;
+      text-decoration: none;
+    }
+
+    .alert {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'admin/adminnavbar.html' %}
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="form-container">
+        <div class="section-title">
+          <h2>Registered Customers</h2>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in registered_users %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.number }}</td>
+                  <td>
+                    {% if user.status == 0 %}
+                      <span class="text-danger">Inactive</span>
+                    {% elif user.status == 1 %}
+                      <span class="text-success">Active</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if user.status == 0 %}
+                      <a class="btn-link" href="{% url 'AdminActivecustomers' %}?uid={{ user.email }}">Activate</a>
+                    {% elif user.status == 1 %}
+                      <a class="btn-link" href="{% url 'AdmindeActivecustomers' %}?uid={{ user.email }}">Deactivate</a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+              {% if messages %}
+                <tr>
+                  <td colspan="6">
+                    <div class="alert alert-danger" role="alert">
+                      {% for message in messages %}
+                        {{ message }}
+                      {% endfor %}
+                    </div>
+                  </td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

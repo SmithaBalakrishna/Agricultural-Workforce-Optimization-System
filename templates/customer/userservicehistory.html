@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for agricultural theme */
+      color: #2e7d32; /* Dark green text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #388e3c; /* Deep green navbar */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #388e3c;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .table th {
+      background-color: #81c784; /* Light green for table headers */
+      color: #ffffff;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .table td {
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: #388e3c; /* Green buttons */
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2e7d32;
+    }
+
+    .badge-status {
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .badge-pending {
+      background-color: #ffeb3b; /* Yellow for pending */
+      color: #000000;
+    }
+
+    .badge-completed {
+      background-color: #81c784; /* Green for completed */
+      color: #ffffff;
+    }
+
+    .badge-inprogress {
+      background-color: #64b5f6; /* Blue for in-progress */
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'customer/customernavbar.html' %}
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="form-container">
+        <h2>Services</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Worker Username</th>
+                <th>Full Address</th>
+                <th>Requested Service</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for req in customer_request %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ req.worker.username }}</td>
+                  <td>{{ req.request.fulladdress }}</td>
+                  <td>{{ req.title }}</td>
+                  <td>{{ req.start }}</td>
+                  <td>{{ req.end }}</td>
+                  <td>
+                    {% if req.status == 'pending' %}
+                      <span class="badge badge-status badge-pending">Pending</span>
+                    {% elif req.status == 'completed' %}
+                      <span class="badge badge-status badge-completed">Completed</span>
+                    {% elif req.status == 'inprogress' %}
+                      <span class="badge badge-status badge-inprogress">In Progress</span>
+                    {% else %}
+                      {{ req.status }}
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #388e3c;"> <!-- Deep green background -->
+  <div class="container">
+    <a class="navbar-brand text-white font-weight-bold" href="{% url 'adminhome' %}">Admin Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="color: #ffffff;"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminhome' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'admincustomerviews' %}">Customer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminworkerviews' %}">Worker</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminviewrequestedservice' %}">User Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminviewacceptedrequests' %}">Accepted Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminviewassignedtasks' %}">Assigned Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'monitortaskprogress' %}">Task Progress</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'timeoffrequests' %}">Time-off Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminpaymentrequest' %}">Payments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminviewcustomerfeedback' %}">Customer Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminpriorityrequest' %}">Priority Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'admincustomersupport' %}">Customer Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminworkersupport' %}">Worker Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'adminlogout' %}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workers List</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for agricultural theme */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #388e3c; /* Deep green */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title h2 {
+      color: #388e3c;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .table {
+      background-color: #ffffff;
+      border: none;
+    }
+
+    .table th {
+      background-color: #81c784; /* Light green for headers */
+      color: #ffffff;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .table td {
+      text-align: center;
+    }
+
+    .form-control {
+      border: 1px solid #c8e6c9; /* Light green border */
+      border-radius: 5px;
+    }
+
+    .form-control:focus {
+      border-color: #388e3c; /* Green focus */
+      box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+    }
+
+    .btn-secondary {
+      background-color: #388e3c;
+      border: none;
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background-color: #2e7d32;
+    }
+
+    .btn-primary {
+      background-color: #81c784; /* Light green for lookup button */
+      border: none;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #66bb6a;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'admin/adminnavbar.html' %}
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="form-container">
+        <div class="section-title">
+          <h2>Workers List</h2>
+        </div>
+        <form method="GET" action="{% url 'adminviewassignedtasks' %}">
+          <div class="row mb-4">
+            <div class="col-md-10">
+              <input type="text" name="search" class="form-control" placeholder="Search for workers...">
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-secondary btn-block">Search</button>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Username</th>
+                    <th>Contact</th>
+                    <th>Look-up</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for worker in workers %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ worker.username }}</td>
+                      <td>{{ worker.number }}</td>
+                      <td>
+                        <a href="{% url 'admin_worker_details' %}?id={{ worker.id }}" class="btn btn-primary">Look-up</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #e8f5e9; /* Light green for agricultural theme */
+            color: #2e7d32; /* Dark green for text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background-color: #388e3c; /* Deep green for navbar */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #c8e6c9 !important;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        #chat-window {
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            height: 400px;
+            overflow-y: scroll;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .my-message {
+            text-align: right;
+            background-color: #81c784; /* Light green for sender messages */
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        .other-message {
+            text-align: left;
+            background-color: #f1f8e9; /* Subtle green for receiver messages */
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        .form-inline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-control {
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+            flex-grow: 1;
+        }
+
+        .form-control:focus {
+            border-color: #388e3c;
+            box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: #388e3c; /* Deep green for button */
+            border: none;
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2e7d32;
+        }
+
+        .btn-secondary:focus {
+            box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'customer/customernavbar.html' %}
+
+    <div class="container">
+        <h1 class="text-center" style="color: #388e3c;">Chat with {{ assignment.worker.username }}</h1>
+        <div id="chat-window" class="mb-3">
+            {% for message in messages %}
+                <div class="{% if message.customer_sender == user %}my-message{% else %}other-message{% endif %}">
+                    <strong>
+                        {% if message.customer_sender %}
+                            {{ message.customer_sender.username }}
+                        {% else %}
+                            {{ message.worker_sender.username }}
+                        {% endif %}
+                    </strong>: {{ message.message }} 
+                    <small class="d-block text-muted" style="font-size: 0.8rem;">{{ message.timestamp }}</small>
+                </div>
+            {% endfor %}
+        </div>
+        <form id="chat-form" method="post" action="{% url 'send_message' %}" class="form-inline">
+            {% csrf_token %}
+            <input type="hidden" name="assignment_id" value="{{ assignment.id }}">
+            <input type="text" name="message" id="message-input" placeholder="Type your message" class="form-control">
+            <button type="submit" class="btn btn-secondary">Send</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const messageInput = document.getElementById('message-input');
+            const assignmentId = document.querySelector('input[name="assignment_id"]').value;
+
+            fetch("{% url 'send_message' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify({
+                    assignment_id: assignmentId,
+                    message: messageInput.value,
+                }),
+            }).then(response => response.json()).then(data => {
+                if (data.sender && data.message) {
+                    const chatWindow = document.getElementById('chat-window');
+                    const newMessage = document.createElement('div');
+                    newMessage.className = 'my-message';
+                    newMessage.innerHTML = `<strong>${data.sender}:</strong> ${data.message} 
+                                            <small class="d-block text-muted" style="font-size: 0.8rem;">${data.timestamp}</small>`;
+                    chatWindow.appendChild(newMessage);
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                    messageInput.value = '';
+                }
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

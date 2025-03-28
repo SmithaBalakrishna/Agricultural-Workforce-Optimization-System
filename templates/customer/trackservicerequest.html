@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requested Services</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for agricultural theme */
+      color: #2e7d32; /* Dark green text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .navbar {
+      background-color: #388e3c; /* Deep green navbar */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .section-title h2 {
+      color: #388e3c;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .table {
+      background-color: #ffffff;
+      border: none;
+    }
+    .table th {
+      background-color: #81c784; /* Light green headers */
+      color: #ffffff;
+      text-align: center;
+      font-weight: bold;
+    }
+    .table td {
+      text-align: center;
+      color: #2e7d32;
+    }
+    .btn-primary {
+      background-color: #388e3c;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #2e7d32;
+    }
+    .btn-danger {
+      background-color: #d32f2f;
+      border: none;
+    }
+    .btn-danger:hover {
+      background-color: #c62828;
+    }
+    .btn-warning {
+      background-color: #fbc02d;
+      border: none;
+      color: #ffffff;
+    }
+    .btn-warning:hover {
+      background-color: #f9a825;
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'customer/customernavbar.html' %}
+  
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="form-container">
+        <div class="section-title">
+          <h2>Requested Services</h2>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Full Name</th>
+                <th>Full Address</th>
+                <th>Service</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Route</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for req in customer_request %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ req.fullname }}</td>
+                  <td>{{ req.fulladdress }}</td>
+                  <td>{{ req.service }}</td>
+                  <td>{{ req.start_date }}</td>
+                  <td>{{ req.end_date }}</td>
+                  <td>{{ req.start_time }}</td>
+                  <td>{{ req.end_time }}</td>
+                  <td>
+                    <a href="{{ req.location }}" target="_blank" class="btn btn-primary btn-sm">Directions</a>
+                  </td>
+                  <td>
+                    {% if req.status == 'accepted' %}
+                      <span class="badge badge-success">Approved</span>
+                    {% elif req.status == 'rejected' %}
+                      <span class="badge badge-danger">Rejected</span>
+                    {% else %}
+                      <span class="badge badge-warning">Pending</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if req.status != 'accepted' and req.status != 'rejected' %}
+                      <a href="{% url 'delete_service_request' %}?pk={{ req.pk }}" class="btn btn-danger btn-sm">Delete</a>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if req.status != 'accepted' and req.status != 'rejected' %}
+                      {% if req.pri_status != 'priority' %}
+                        <a href="{% url 'set_priority' %}?pk={{ req.pk }}" class="btn btn-warning btn-sm">Set Priority</a>
+                      {% else %}
+                        <span class="badge badge-info">Priority Set</span>
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

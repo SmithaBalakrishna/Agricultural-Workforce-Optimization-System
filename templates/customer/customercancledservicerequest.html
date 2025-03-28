@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canceled Requests</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for agricultural theme */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #388e3c; /* Deep green for navbar */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title h2 {
+      color: #388e3c;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .table {
+      background-color: #ffffff;
+      border: none;
+    }
+
+    .table th {
+      background-color: #81c784; /* Light green for headers */
+      color: #ffffff;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .table td {
+      text-align: center;
+    }
+
+    .btn-danger {
+      background-color: #d32f2f;
+      border: none;
+      color: #ffffff;
+    }
+
+    .btn-danger:hover {
+      background-color: #b71c1c;
+    }
+
+    .btn-danger i {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'customer/customernavbar.html' %}
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="form-container">
+        <div class="section-title">
+          <h2>Canceled Requested Services</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Full Name</th>
+                    <th>Full Address</th>
+                    <th>Service</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Route</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for req in customer_request %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ req.fullname }}</td>
+                    <td>{{ req.fulladdress }}</td>
+                    <td>{{ req.service }}</td>
+                    <td>{{ req.start_date }}</td>
+                    <td>{{ req.end_date }}</td>
+                    <td>{{ req.start_time }}</td>
+                    <td>{{ req.end_time }}</td>
+                    <td>
+                      <a href="{{ req.location }}" target="_blank" class="btn btn-danger">
+                        <i class="fas fa-map-marker-alt"></i> Directions
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% if messages %}
+              <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                  {{ message }}
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

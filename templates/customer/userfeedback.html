@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Feedback</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for the theme */
+      color: #2e7d32; /* Dark green text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #388e3c; /* Deep green navbar */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #388e3c;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      border: 1px solid #c8e6c9; /* Light green border */
+      border-radius: 5px;
+    }
+
+    .form-control:focus {
+      border-color: #388e3c; /* Green focus border */
+      box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+    }
+
+    .btn-secondary {
+      background-color: #388e3c; /* Deep green button */
+      border: none;
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background-color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'customer/customernavbar.html' %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 form-container">
+        <h1>User Feedback</h1>
+        <form method="post" action="{% url 'user_feedback' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="rating" style="color: #388e3c; font-weight: bold;">Rating</label>
+            <input type="number" class="form-control" id="rating" name="rating" placeholder="Enter your rating (1-5)" min="1" max="5" required>
+          </div>
+          <div class="form-group">
+            <label for="comments" style="color: #388e3c; font-weight: bold;">Comments</label>
+            <textarea class="form-control" id="comments" name="comments" rows="4" placeholder="Enter your comments" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-secondary btn-block">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

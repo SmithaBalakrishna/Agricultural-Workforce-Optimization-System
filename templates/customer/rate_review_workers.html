@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate and Review Workers</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #e8f5e9; /* Light green for background */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .form-container {
+      background-color: #ffffff; /* White for form background */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-control {
+      border: 1px solid #c8e6c9; /* Light green border */
+      border-radius: 5px;
+      color: #2e7d32;
+    }
+    .form-control::placeholder {
+      color: #9e9e9e; /* Light gray placeholder */
+    }
+    .form-control:focus {
+      border-color: #388e3c;
+      box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+    }
+    .btn-secondary {
+      background-color: #388e3c; /* Deep green for button */
+      border: none;
+      color: #ffffff;
+    }
+    .btn-secondary:hover {
+      background-color: #2e7d32;
+    }
+    h1, h2 {
+      color: #388e3c; /* Deep green for headers */
+    }
+    .table th {
+      background-color: #81c784; /* Light green for headers */
+      color: #ffffff;
+    }
+    .table td {
+      color: #2e7d32; /* Dark green for table text */
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'customer/customernavbar.html' %}
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 form-container">
+        <h1 class="text-center">Rate and Review Workers</h1>
+        <form method="post" action="{% url 'submit_rating_review' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="worker">Worker</label>
+            <select class="form-control" id="worker" name="worker" required>
+              {% for worker in workers %}
+                <option value="{{ worker }}">{{ worker }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <input type="number" class="form-control" id="rating" name="rating" placeholder="Enter rating (1-5)" min="1" max="5" required>
+          </div>
+          <div class="form-group">
+            <label for="review">Review</label>
+            <textarea class="form-control" id="review" name="review" rows="4" placeholder="Enter your review" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-secondary btn-block">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="form-container">
+        <div class="section-title">
+            <h2>Ratings</h2>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Worker Username</th>
+                <th>Rating</th>
+                <th>Review</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for req in customer_request %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{ req.worker.username }}</td>
+                  <td>{{ req.rating }}</td>
+                  <td>{{ req.review }}</td>
+                  <td>{{ req.submitted_at }}</td>                         
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

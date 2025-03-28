@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worker Home</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #e8f5e9; /* Light green for agriculture theme */
+      color: #2e7d32; /* Dark green for text */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: #388e3c;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #fff !important;
+    }
+    .nav-link:hover {
+      color: #c8e6c9 !important;
+    }
+
+    /* Profile Container */
+    .profile-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+      border: 1px solid #aed581;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .form-control:focus {
+      border-color: #81c784;
+      box-shadow: 0 0 5px rgba(81, 199, 132, 0.5);
+    }
+
+    .btn-primary {
+      background-color: #388e3c;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #2e7d32;
+    }
+
+    h1, label {
+      color: #388e3c;
+    }
+
+    select[multiple] {
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'worker/workernavbar.html' %}
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-10">
+        <div class="profile-container">
+          <form method="POST" action="">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 profile-detail">
+                <label for="status"><strong>Status:</strong></label>
+                {% if worker_profile.status == "Available" %}
+                  <a class="btn btn-success" href="{% url 'change_status' %}?worker_id={{ worker_profile.worker.id }}&status=Unavailable" style="color:white">Available</a>
+                {% else %}
+                  <a class="btn btn-danger" href="{% url 'change_status' %}?worker_id={{ worker_profile.worker.id }}&status=Available" style="color:white">Unavailable</a>
+                {% endif %}
+                <input type="hidden" id="status" name="status" value="{{ worker_profile.status }}">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-10">
+        <div class="profile-container">
+          <h1>Profile Details</h1>
+          <form method="POST" action="{% url 'update_worker_profile' %}">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 profile-detail">
+                <label for="firstname"><strong>First Name:</strong></label>
+                <input type="text" id="firstname" name="firstname" class="form-control" value="{{ worker.firstname }}">
+              </div>
+              <div class="col-md-6 profile-detail">
+                <label for="lastname"><strong>Last Name:</strong></label>
+                <input type="text" id="lastname" name="lastname" class="form-control" value="{{ worker.lastname }}">
+              </div>
+              <div class="col-md-6 profile-detail">
+                <label for="address"><strong>Address:</strong></label>
+                <input type="text" id="address" name="address" class="form-control" value="{{ worker.address }}">
+              </div>
+              <div class="col-md-6 profile-detail">
+                <label for="city"><strong>City:</strong></label>
+                <input type="text" id="city" name="city" class="form-control" value="{{ worker.city }}">
+              </div>
+              <div class="col-md-6 profile-detail">
+                <label for="state"><strong>State:</strong></label>
+                <input type="text" id="state" name="state" class="form-control" value="{{ worker.state }}">
+              </div>
+              <div class="col-md-6 profile-detail">
+                <label for="country"><strong>Country:</strong></label>
+                <input type="text" id="country" name="country" class="form-control" value="{{ worker.country }}">
+              </div>
+              <div class="col-md-6 profile-detail">
+                <label for="skills"><strong>Skills:</strong></label>
+                <select class="form-control" id="skills" name="skills[]" multiple>
+                  <option value="Plowing">Plowing</option>
+                  <option value="Seed Sowing">Seed Sowing</option>
+                  <option value="Irrigation Management">Irrigation Management</option>
+                  <option value="Crop Monitoring">Crop Monitoring</option>
+                  <option value="Weed Control">Weed Control</option>
+                  <option value="Pesticide Application">Pesticide Application</option>
+                  <option value="Harvesting">Harvesting</option>
+                  <option value="Soil Testing">Soil Testing</option>
+                  <option value="Post-Harvest Processing">Post-Harvest Processing</option>
+                  <option value="Greenhouse Management">Greenhouse Management</option>
+                  <option value="Livestock Feeding">Livestock Feeding</option>
+                  <option value="Milk Collection">Milk Collection</option>
+                  <option value="Poultry Care">Poultry Care</option>
+                  <option value="Compost Preparation">Compost Preparation</option>
+                  <option value="Farm Equipment Maintenance">Farm Equipment Maintenance</option>
+                  <option value="Water Resource Management">Water Resource Management</option>
+                  <option value="Agroforestry Practices">Agroforestry Practices</option>
+                  <option value="Beekeeping">Beekeeping</option>
+                  <option value="Fertilizer Application">Fertilizer Application</option>
+                  <option value="Tractor Operation">Tractor Operation</option>
+                  <option value="Precision Farming">Precision Farming</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">Update Profile</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
