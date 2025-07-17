@@ -2,7 +2,7 @@
 
 A Django-based web application to manage agricultural data and help farmers improve productivity using modern tools and data analytics.
 
-## 📋 Overview
+ 📋 Overview
 
 This project focuses on delivering a digital platform for farmers, researchers, or agribusinesses. It may include features such as:
 
