@@ -73,7 +73,7 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ![Admin Login](AdminLogin.png)
 
 ### 🟢 Admin Dashboard
-![Admin Dashboard](Admin Dashboard.png)
+![Admin Dashboard](AdminDashboard.png)
 
 ### 🟢 Assigned Tasks
 ![Assigned Tasks](Assignedtasks.png)
@@ -85,7 +85,7 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ![Customer Login](customerLogin.png)
 
 ### 🟢 Customer Profile
-![Customer Profile](Customer Profile.png)
+![Customer Profile](CustomerProfile.png)
 
 ### 🟢 Customer Support
 ![Customer Support](CustomerSupport.png)
@@ -94,13 +94,13 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ![Rate and Review](Rateandreview.png)
 
 ### 🟢 Registered Customers
-![Registered Customers](Registered Customers.png)
+![Registered Customers](RegisteredCustomers.png)
 
 ### 🟢 Requested Services
-![Requested Services](Requested Services.png)
+![Requested Services](RequestedServices.png)
 
 ### 🟢 Task Progress
-![Task Progress](Task Progress.png)
+![Task Progress](TaskProgress.png)
 
 ### 🟢 Worker Login
 ![Worker Login](WorkerLogin.png)
