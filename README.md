@@ -67,46 +67,46 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ## 📸 Screenshots
 
 ### 🟢 Home Page
-![Home Page](assets/HomePage.png)
+![Home Page](HomePage.png)
 
 ### 🟢 Admin Login
-![Admin Login](assets/AdminLogin.png)
+![Admin Login](AdminLogin.png)
 
 ### 🟢 Admin Dashboard
-![Admin Dashboard](assets/Admin Dashboard.png)
+![Admin Dashboard](Admin Dashboard.png)
 
 ### 🟢 Assigned Tasks
-![Assigned Tasks](assets/Assignedtasks.png)
+![Assigned Tasks](Assignedtasks.png)
 
 ### 🟢 Create Service Request
-![Create Request](assets/Create Service Request.png)
+![Create Request](Create Service Request.png)
 
 ### 🟢 Customer Login
-![Customer Login](assets/customerLogin.png)
+![Customer Login](customerLogin.png)
 
 ### 🟢 Customer Profile
-![Customer Profile](assets/Customer Profile.png)
+![Customer Profile](Customer Profile.png)
 
 ### 🟢 Customer Support
-![Customer Support](assets/CustomerSupport.png)
+![Customer Support](CustomerSupport.png)
 
 ### 🟢 Rate and Review
-![Rate and Review](assets/Rateandreview.png)
+![Rate and Review](Rateandreview.png)
 
 ### 🟢 Registered Customers
-![Registered Customers](assets/Registered Customers.png)
+![Registered Customers](Registered Customers.png)
 
 ### 🟢 Requested Services
-![Requested Services](assets/Requested Services.png)
+![Requested Services](Requested Services.png)
 
 ### 🟢 Task Progress
-![Task Progress](assets/Task Progress.png)
+![Task Progress](Task Progress.png)
 
 ### 🟢 Worker Login
-![Worker Login](assets/WorkerLogin.png)
+![Worker Login](WorkerLogin.png)
 
 ### 🟢 Worker Status
-![Worker Status](assets/WorkerStatus.png)
+![Worker Status](WorkerStatus.png)
 
 ## ⚙️ Setup Instructions
 
