@@ -64,15 +64,38 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ## 📸 Screens
 
 
-> Add images of:  
-> - Admin Dashboard
+## 📸 Screenshots
 
-> - Task Assignment Screen  
-> - Customer Request Form  
-> - Worker Profile View  
-> - Invoice Generation Page  
+### 🟢 Landing Page
+![Landing Page](assets/Screenshot%202025-07-24%20at%202.47.22%20AM.png)
 
----
+### 🟢 Customer Login & Registration
+![Customer Page](assets/Screenshot%202025-07-24%20at%202.47.32%20AM.png)
+
+### 🟢 Worker Login & Registration
+![Worker Page](assets/Screenshot%202025-07-24%20at%202.47.41%20AM.png)
+
+### 🟢 Admin Login
+![Admin Login](assets/Screenshot%202025-07-24%20at%202.47.56%20AM.png)
+
+### 🟢 Admin Dashboard
+![Admin Dashboard](assets/Screenshot%202025-07-24%20at%202.48.04%20AM.png)
+
+### 🟢 Registered Customers View
+![Customer List](assets/Screenshot%202025-07-24%20at%202.48.12%20AM.png)
+
+### 🟢 Task Progress Tracking
+![Task Progress](assets/Screenshot%202025-07-24%20at%202.48.19%20AM.png)
+
+### 🟢 Requested Services Overview
+![Service Requests](assets/Screenshot%202025-07-24%20at%202.50.48%20AM.png)
+
+### 🟢 Customer Profile Management
+![Customer Profile](assets/Screenshot%202025-07-24%20at%202.50.55%20AM.png)
+
+### 🟢 Create Service Request Form
+![Create Request](assets/Screenshot%202025-07-24%20at%203.03.27%20AM.png)
+
 
 ## ⚙️ Setup Instructions
 
