@@ -66,36 +66,35 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 
 ## 📸 Screenshots
 
-### 🟢 Landing Page
-![Landing Page](assets/Screenshot%202025-07-24%20at%202.47.22%20AM.png)
+### 🟢 Home Page
+![Home Page](assets/HomePage.png)
 
-### 🟢 Customer Login & Registration
-![Customer Page](assets/Screenshot%202025-07-24%20at%202.47.32%20AM.png)
+### 🟢 Customer Login
+![Customer Login](assets/customerLogin.png)
 
-### 🟢 Worker Login & Registration
-![Worker Page](assets/Screenshot%202025-07-24%20at%202.47.41%20AM.png)
+### 🟢 Worker Login
+![Worker Login](assets/WorkerLogin.png)
 
-### 🟢 Admin Login
-![Admin Login](assets/Screenshot%202025-07-24%20at%202.47.56%20AM.png)
+### 🟢 Registered Customers
+![Registered Customers](assets/Registered Customers.png)
 
-### 🟢 Admin Dashboard
-![Admin Dashboard](assets/Screenshot%202025-07-24%20at%202.48.04%20AM.png)
-
-### 🟢 Registered Customers View
-![Customer List](assets/Screenshot%202025-07-24%20at%202.48.12%20AM.png)
+### 🟢 Requested Services
+![Requested Services](assets/Requested Services.png)
 
 ### 🟢 Task Progress Tracking
-![Task Progress](assets/Screenshot%202025-07-24%20at%202.48.19%20AM.png)
+![Task Progress](assets/Task Progress.png)
 
-### 🟢 Requested Services Overview
-![Service Requests](assets/Screenshot%202025-07-24%20at%202.50.48%20AM.png)
+### 🟢 Customer Profile
+![Customer Profile](assets/Customer Profile.png)
 
-### 🟢 Customer Profile Management
-![Customer Profile](assets/Screenshot%202025-07-24%20at%202.50.55%20AM.png)
+### 🟢 Customer Support Page
+![Customer Support](assets/CustomerSupport.png)
 
-### 🟢 Create Service Request Form
-![Create Request](assets/Screenshot%202025-07-24%20at%203.03.27%20AM.png)
+### 🟢 Worker Status Page
+![Worker Status](assets/WorkerStatus.png)
 
+### 🟢 Rate and Review Page
+![Rate and Review](assets/Rateandreview.png)
 
 ## ⚙️ Setup Instructions
 
