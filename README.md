@@ -69,11 +69,29 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ### 🟢 Home Page
 ![Home Page](assets/HomePage.png)
 
+### 🟢 Admin Login
+![Admin Login](assets/AdminLogin.png)
+
+### 🟢 Admin Dashboard
+![Admin Dashboard](assets/Admin Dashboard.png)
+
+### 🟢 Assigned Tasks
+![Assigned Tasks](assets/Assignedtasks.png)
+
+### 🟢 Create Service Request
+![Create Request](assets/Create Service Request.png)
+
 ### 🟢 Customer Login
 ![Customer Login](assets/customerLogin.png)
 
-### 🟢 Worker Login
-![Worker Login](assets/WorkerLogin.png)
+### 🟢 Customer Profile
+![Customer Profile](assets/Customer Profile.png)
+
+### 🟢 Customer Support
+![Customer Support](assets/CustomerSupport.png)
+
+### 🟢 Rate and Review
+![Rate and Review](assets/Rateandreview.png)
 
 ### 🟢 Registered Customers
 ![Registered Customers](assets/Registered Customers.png)
@@ -81,20 +99,14 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ### 🟢 Requested Services
 ![Requested Services](assets/Requested Services.png)
 
-### 🟢 Task Progress Tracking
+### 🟢 Task Progress
 ![Task Progress](assets/Task Progress.png)
 
-### 🟢 Customer Profile
-![Customer Profile](assets/Customer Profile.png)
+### 🟢 Worker Login
+![Worker Login](assets/WorkerLogin.png)
 
-### 🟢 Customer Support Page
-![Customer Support](assets/CustomerSupport.png)
-
-### 🟢 Worker Status Page
+### 🟢 Worker Status
 ![Worker Status](assets/WorkerStatus.png)
-
-### 🟢 Rate and Review Page
-![Rate and Review](assets/Rateandreview.png)
 
 ## ⚙️ Setup Instructions
 
