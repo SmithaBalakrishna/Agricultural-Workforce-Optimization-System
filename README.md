@@ -64,8 +64,6 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ## 📸 Screens
 
 
-## 📸 Screenshots
-
 ### 🟢 Home Page
 ![Home Page](HomePage.png)
 
@@ -79,7 +77,7 @@ This system ensures efficient labor use, fair worker compensation, seamless comm
 ![Assigned Tasks](Assignedtasks.png)
 
 ### 🟢 Create Service Request
-![Create Request](Create Service Request.png)
+![Create Request](CreateServiceRequest.png)
 
 ### 🟢 Customer Login
 ![Customer Login](customerLogin.png)
