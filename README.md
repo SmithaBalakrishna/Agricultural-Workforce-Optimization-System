@@ -165,14 +165,9 @@ agri_workforce/
 This project was created as part of the 518 Software Engineering course at the University of Dayton. Contact authors for academic or commercial use permissions.
 
 
-📽️ Demo Video
-👉 Watch the Demo Video
-
 ✅ Status
 ✅ Admin Dashboard complete
-
 ✅ Customer & Worker portals implemented
-
 ✅ Task assignment, invoice, and progress tracking functional
 
 ✅ Full system tested and deployed locally
