@@ -154,11 +154,8 @@ agri_workforce/
 
 📄 Documentation
 📘 Use Cases: Customer Handling, Worker Management, Task Assignment, View All Tasks
-
 🗂️ Diagrams: Use Case, Activity, Sequence, ER, Class, and Deployment Diagrams
-
 🧪 Test Reports: Functional testing logs and scenario validation (included in docs folder)
-
 📖 User Guide: Available in /docs/UserGuide.pdf
 
 🧾 License
@@ -169,7 +166,6 @@ This project was created as part of the 518 Software Engineering course at the U
 ✅ Admin Dashboard complete
 ✅ Customer & Worker portals implemented
 ✅ Task assignment, invoice, and progress tracking functional
-
 ✅ Full system tested and deployed locally
 
 💬 Feel free to fork, contribute, or reach out for collaboration opportunities!
